@@ -39,9 +39,8 @@ sub init {
 		$libcommon::log::logTemplate= '[%l][%d][%p]';
 		$libcommon::log::messagePosition='AFTER';
                 $libcommon::log::activeTemplate= 1;
-	} else {
-		$libcommon::log::config = $A2T::Config->getSection("LOG");
-        }
+	}
+       
 	$| = 1;
 }
 
@@ -102,7 +101,7 @@ sub confLoad {
     strftime($libcommon::log::config->getKey('logDirTemplate'), localtime); 
     $libcommon::log::logFile =  $libcommon::log::config->getKeyPath('logRepository') . "local/".
     strftime($config->getKey('logDirTemplate') . "/" . 
-        $libcommon::log::config->getKey('logFileTemplate'), localtime) . ".A2T.log";
+        $libcommon::log::config->getKey('logFileTemplate'), localtime) . ".log";
     mkpath($libcommon::log::logDir);
     mkpath($config->getKeyPath('logRepository') . "local/archive");
     $libcommon::log::traceLevel = $config->getKey('trace');

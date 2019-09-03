@@ -14,7 +14,6 @@ our @EXPORT = qw/getKey getSectionKeys getSection load displayConfig/;
 
 sub addToConf {
     push @libcommon::config::globalConf, shift;
-    #$A2T::Config = load();
 }
 
 sub getSectionsList {

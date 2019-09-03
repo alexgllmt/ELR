@@ -1,0 +1,24 @@
+[Unit]
+Description=Fait les déclaration et le fait bien
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+User=root
+Group=root
+Type=notify
+EnvironmentFile=
+Environment=PERL5LIB=/PERL/Etna
+ExecStart=/PERL/Etna/httpcoockie.pl
+ExecReload=/bin/kill -9 $MAINPID
+PrivateTmp=false
+WatchdogSec=60
+KillMode=process
+TimeoutStopSec=30
+SendSIGKILL=yes
+KillSignal=SIGTERM
+UMask=0007 
+StandardOutput=null
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

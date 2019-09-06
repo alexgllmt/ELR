@@ -229,6 +229,13 @@ sub generateMSG
     my $rand = int(rand(5));
     my $module = $configModule->getKey($val->{Repertoire});
     my $resultat = $result[$rand];
+    ($sec, $min, $hour, $mday, $mon, $year, $wday) = localtime();
+    $year = $year + 1900;
+    $mon = $mon + 1;
+    $start =sprintf("%s-%02s-%02s %s:%s", $year,$mon,$mday, $configHeureM->getKey("start"), "00");
+    $stop =sprintf("%s-%02s-%02s %s:%s", $year,$mon,$mday, $configHeureM->getKey("stop"), "00");
+
+
     my $dec = {module => $module, declaration=>{start=> $start, end=> $stop, content=> "- Objectifs: $val->{commitMessage}\n - Actions: \n$action\n- Résultats: $resultat"}};
     $dec = JSON::XS->new->utf8->encode($dec);
     return $dec;
